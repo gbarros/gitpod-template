@@ -1,0 +1,17 @@
+image: gitpod/workspace-full
+tasks:
+  - name: install-cartesi-cli
+    command: npm i -g @cartesi/cli
+  - name: configure-docker-builders
+    command: docker buildx create --name mybuilder --use --bootstrap --platform linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386,linux/riscv64
+
+ports:
+  - name: cartesi-node
+    port: 8080
+    description: Exposes the main port for the APIs of the cartesi node
+    onOpen: ignore
+  - name: anvil
+    port: 8545
+    description: Exposts the 8545 port of Anvil testnet
+    onOpen: ignore
+  
